@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "183713302525",
+    "firebase_url": "https://mymessengerrn-c6cae.firebaseio.com",
+    "project_id": "mymessengerrn-c6cae",
+    "storage_bucket": "mymessengerrn-c6cae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183713302525:android:6ac8615dbc83e46b",
+        "android_client_info": {
+          "package_name": "com.mymessengerrn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183713302525-6q2rf73gjj5ovisnvik5uege0f19dbfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrWEmPeB0GZGkreKvutAcU6tlbWPC0vx0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
