@@ -9,8 +9,9 @@ buildscript {
         supportLibVersion = "27.1.1"
     }
     repositories {
-        jcenter()
+        mavenLocal()
         google()
+        jcenter()
         maven {
             url 'https://maven.fabric.io/public'
         }
