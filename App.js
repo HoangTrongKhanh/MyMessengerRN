@@ -1,23 +1,27 @@
 
 import React from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import { SwitchNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
 import Main from './components/Main';
 import Loading from './components/Loading';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 
-const App = SwitchNavigator(
+const RootStack = StackNavigator(
   {
-    Loading,
-    SignUp,
-    Login,
-    Main
+    LoadingScreen: { screen : Loading},
+    SignUpScreen: { screen : SignUp},
+    LoginScreen: { screen : Login},
+    MainScreen: { screen : Main}
   },
   {
-    initRouteName: 'Loading'
+    initialRouteName: 'SignUpScreen'
   }
 )
 
-export default App;
+export default class App extends React.Component {
+  render() {
+    return <RootStack/>
+  }
+}

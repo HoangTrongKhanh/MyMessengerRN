@@ -1,1 +1,1 @@
-# MessengerRN
+# Messenger App use React Native and Firebase.
