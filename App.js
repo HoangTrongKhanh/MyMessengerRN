@@ -1,12 +1,11 @@
 
 import React from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import Main from './components/Main';
-import Loading from './components/Loading';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
+import Main from './app/MainScreen/Main';
+import Loading from './app/Loading';
+import SignUp from './app/SignUpScreen/SignUp';
+import Login from './app/LoginScreen/Login';
 
 const RootStack = StackNavigator(
   {

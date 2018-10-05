@@ -11,4 +11,6 @@ target 'MyMessengerRN' do
   pod 'Firebase/Core', '~> 5.9.0'
   pod 'Firebase/Auth', '~> 5.9.0'
 
+  #pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
 end

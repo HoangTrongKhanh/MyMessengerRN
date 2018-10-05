@@ -141,16 +141,14 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-firebase')
-    implementation project(':react-native-firebase')
+    implementation project(':react-native-fbsdk')
     // This should be here already
-    implementation(project(':react-native-firebase')) {
-        transitive = false
-    }
+    implementation project(':react-native-firebase')
 
     // Firebase dependencies
     implementation "com.google.android.gms:play-services-base:15.0.1"
     implementation "com.google.firebase:firebase-core:16.0.3"
+    implementation "com.google.firebase:firebase-auth:16.0.3"
 
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

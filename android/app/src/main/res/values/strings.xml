@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MyMessengerRN</string>
+    <string name="facebook_app_id">316686859118893</string>
+    <string name="fb_login_protocol_scheme">fb316686859118893</string>
+
 </resources>
