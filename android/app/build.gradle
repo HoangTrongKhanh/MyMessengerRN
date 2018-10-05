@@ -141,13 +141,15 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-google-signin')
+    implementation(project(":react-native-google-signin")){
+        exclude group: "com.google.android.gms" // very important
+    }
     implementation project(':react-native-fbsdk')
-    // This should be here already
     implementation project(':react-native-firebase')
 
     // Firebase dependencies
-    implementation "com.google.android.gms:play-services-base:15.0.1"
+    implementation "com.google.android.gms:play-services-base:15.0.0"
+    implementation 'com.google.android.gms:play-services-auth:15.0.0'
     implementation "com.google.firebase:firebase-core:16.0.3"
     implementation "com.google.firebase:firebase-auth:16.0.3"
 
@@ -165,3 +167,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
