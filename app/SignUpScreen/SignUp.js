@@ -5,24 +5,59 @@ import {
   Text,
   TextInput,
   View,
-  Button
+  Button,
+  AsyncStorage
 } from "react-native";
 import firebase from "react-native-firebase";
+import Spinner from "react-native-loading-spinner-overlay";
 
 export default class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      name: "",
+      password: "",
+      password_confirmation: "",
+      user: null,
+      errMessage: null,
+      showProgress: false,
+      loading: false
+    };
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.navigation.navigate("MainScreen");
+        this.setState({
+          loading: false
+        });
+      }
+    });
+  }
+
   static navigationOptions = {
     header: null
   };
 
-  state = { email: "", password: "", errMessage: null };
+  async handleSignUp() {
+    this.setState({ loading: true });
+    const { email, password, name } = this.state;
 
-  handleSignUp = () => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate("MainScreen"))
-      .catch(error => this.setState({ errMessage: error.message }));
-  };
+      .createUserWithEmailAndPassword(email, password)
+      .then(currentUser => {
+        this.setState({ user: currentUser, loading: false });
+      })
+      .catch(error =>
+        this.setState({ errorMessage: error.message, loading: false })
+      );
+
+    await AsyncStorage.setItem("email", email);
+    await AsyncStorage.setItem("name", name);
+    await AsyncStorage.setItem("password", password);
+    //this.props.navigation.navigate("MainScreen");
+  }
 
   render() {
     return (
@@ -36,31 +71,60 @@ export default class SignUp extends Component {
         <KeyboardAvoidingView style={styles.keyboard}>
           <TextInput
             style={styles.textInput}
+            value={this.state.name}
+            onChangeText={name => this.setState({ name })}
+            placeholder="Name"
             returnKeyType="next"
-            autoCapitalize="none"
-            placeholder="Email"
-            keyboardType="email-address"
-            onChangeText={email => this.setState({ email })}
-            value={this.state.email}
+            onSubmitEditing={() => this.emailInput.focus()}
           />
 
           <TextInput
             style={styles.textInput}
-            secureTextEntry
-            returnKeyType="go"
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+            eturnKeyType="next"
+            ref={input => (this.emailInput = input)}
+            onSubmitEditing={() => this.passwordCInput.focus()}
+            keyboardType="email-address"
             autoCapitalize="none"
-            placeholder="Password"
-            onChangeText={password => this.setState({ password })}
+            autoCorrect={false}
+            placeholder="Email"
+          />
+
+          <TextInput
+            style={styles.textInput}
             value={this.state.password}
+            onChangeText={password => this.setState({ password })}
+            placeholder="Password"
+            secureTextEntry={true}
+            ref={input => (this.passwordCInput = input)}
+            onSubmitEditing={() => this.passwordInput.focus()}
+            returnKeyType="next"
+            secureTextEntry
+          />
+
+          <TextInput
+            style={styles.textInput}
+            value={this.state.password}
+            onChangeText={password_confirmation =>
+              this.setState({ password_confirmation })
+            }
+            placeholder="Confirm Password"
+            secureTextEntry={true}
+            returnKeyType="go"
+            secureTextEntry
+            ref={input => (this.passwordInput = input)}
           />
         </KeyboardAvoidingView>
 
-        <Button title="Sign Up" onPress={this.handleSignUp} />
+        <Button title="Sign Up" onPress={this.handleSignUp.bind(this)} />
 
         <Button
           title="Already have an account? Login"
           onPress={() => this.props.navigation.navigate("LoginScreen")}
         />
+
+        <Spinner visible={this.state.loading} />
       </View>
     );
   }
