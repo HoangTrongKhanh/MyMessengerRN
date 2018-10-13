@@ -12,18 +12,29 @@ import firebase from "react-native-firebase";
 
 import { LoginButton, LoginManager, AccessToken } from "react-native-fbsdk";
 import { GoogleSignin } from "react-native-google-signin";
+import Spinner from "react-native-loading-spinner-overlay";
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.unsubcriber = null;
+
     this.state = {
-      isAuthenticated: false,
       email: "",
       password: "",
       user: null,
+      loading: false,
       errorMessage: null
     };
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.navigation.navigate("MainScreen");
+        this.setState({
+          loading: false
+        });
+      }
+    });
   }
 
   static navigationOptions = {
@@ -47,20 +58,23 @@ export default class Login extends Component {
     }
   }
 
-  state = { email: "", password: "", errorMessage: null };
-
-  handleLogin = () => {
+  async handleLogin() {
+    this.setState({ errorMessage: null, loading: true });
     const { email, password } = this.state;
 
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(currentUser => {
-        this.setState({ user: currentUser });
+        this.setState({ user: currentUser, loading: false });
       })
-      .then(() => this.props.navigation.navigate("MainScreen"))
-      .catch(error => this.setState({ errorMessage: error.message }));
-  };
+      .catch(error =>
+        this.setState({ errorMessage: error.message, loading: false })
+      );
+
+    await AsyncStorage.setItem("email", email);
+    await AsyncStorage.setItem("password", password);
+  }
 
   handleLoginFacebook = () => {
     LoginManager.logInWithReadPermissions(["public_profile", "email"])
@@ -130,26 +144,28 @@ export default class Login extends Component {
         <KeyboardAvoidingView style={styles.keyboard}>
           <TextInput
             style={styles.textInput}
+            placeholder="Email"
             returnKeyType="next"
             autoCapitalize="none"
-            placeholder="Email"
             keyboardType="email-address"
+            onSubmitEditing={() => this.passwordInput.focus()}
             onChangeText={email => this.setState({ email })}
             value={this.state.email}
           />
 
           <TextInput
             style={styles.textInput}
+            placeholder="Password"
             secureTextEntry
             returnKeyType="go"
             autoCapitalize="none"
-            placeholder="Password"
+            ref={input => (this.passwordInput = input)}
             onChangeText={password => this.setState({ password })}
             value={this.state.password}
           />
         </KeyboardAvoidingView>
 
-        <Button onPress={this.handleLogin}>Login</Button>
+        <Button onPress={this.handleLogin.bind(this)}>Login</Button>
 
         <Button
           containerStyle={{
@@ -182,6 +198,8 @@ export default class Login extends Component {
         <Button onPress={() => this.props.navigation.navigate("SignUpScreen")}>
           Don't have an account? Sign Up
         </Button>
+
+        <Spinner visible={this.state.loading} />
       </View>
     );
   }
