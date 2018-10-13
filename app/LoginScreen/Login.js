@@ -1,7 +1,15 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  AsyncStorage,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
+} from "react-native";
 import Button from "react-native-button";
 import firebase from "react-native-firebase";
+
 import { LoginButton, LoginManager, AccessToken } from "react-native-fbsdk";
 import { GoogleSignin } from "react-native-google-signin";
 
@@ -86,7 +94,7 @@ export default class Login extends Component {
       });
   };
 
-  onLoginGoogle = () => {
+  handleLoginGoogle = () => {
     GoogleSignin.signIn()
       .then(data => {
         // create a new firebase credential with the token
@@ -113,28 +121,35 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Login</Text>
+        <Text style={{ fontSize: 20 }}>Login</Text>
+
         {this.state.errorMessage && (
           <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
         )}
 
-        <TextInput
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Email"
-          onChangeText={email => this.setState({ email })}
-          value={this.state.email}
-        />
-        <TextInput
-          secureTextEntry
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Password"
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
+        <KeyboardAvoidingView style={styles.keyboard}>
+          <TextInput
+            style={styles.textInput}
+            returnKeyType="next"
+            autoCapitalize="none"
+            placeholder="Email"
+            keyboardType="email-address"
+            onChangeText={email => this.setState({ email })}
+            value={this.state.email}
+          />
 
-        <Button title="Login" onPress={this.handleLogin} />
+          <TextInput
+            style={styles.textInput}
+            secureTextEntry
+            returnKeyType="go"
+            autoCapitalize="none"
+            placeholder="Password"
+            onChangeText={password => this.setState({ password })}
+            value={this.state.password}
+          />
+        </KeyboardAvoidingView>
+
+        <Button onPress={this.handleLogin}>Login</Button>
 
         <Button
           containerStyle={{
@@ -159,15 +174,14 @@ export default class Login extends Component {
             backgroundColor: "rgb(204,84,65)"
           }}
           style={{ fontSize: 18, color: "white" }}
-          onPress={this.onLoginGoogle}
+          onPress={this.handleLoginGoogle}
         >
           Login Google
         </Button>
 
-        <Button
-          title="Don't have an account? Sign Up"
-          onPress={() => this.props.navigation.navigate("SignUpScreen")}
-        />
+        <Button onPress={() => this.props.navigation.navigate("SignUpScreen")}>
+          Don't have an account? Sign Up
+        </Button>
       </View>
     );
   }
@@ -185,5 +199,12 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     marginTop: 8
+  },
+  keyboard: {
+    margin: 10,
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "stretch"
   }
 });

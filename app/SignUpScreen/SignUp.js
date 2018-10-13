@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Button
+} from "react-native";
 import firebase from "react-native-firebase";
 
 export default class SignUp extends Component {
@@ -21,27 +28,35 @@ export default class SignUp extends Component {
     return (
       <View style={styles.container}>
         <Text style={{ fontSize: 20 }}>Sign Up</Text>
+
         {this.state.errMessage && (
           <Text style={{ color: "red" }}>{this.state.errMessage}</Text>
         )}
-        <TextInput
-          placeholder="Email"
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={email => this.setState({ email })}
-          value={this.state.email}
-        />
 
-        <TextInput
-          secureTextEntry
-          placeholder="Password"
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
+        <KeyboardAvoidingView style={styles.keyboard}>
+          <TextInput
+            style={styles.textInput}
+            returnKeyType="next"
+            autoCapitalize="none"
+            placeholder="Email"
+            keyboardType="email-address"
+            onChangeText={email => this.setState({ email })}
+            value={this.state.email}
+          />
+
+          <TextInput
+            style={styles.textInput}
+            secureTextEntry
+            returnKeyType="go"
+            autoCapitalize="none"
+            placeholder="Password"
+            onChangeText={password => this.setState({ password })}
+            value={this.state.password}
+          />
+        </KeyboardAvoidingView>
 
         <Button title="Sign Up" onPress={this.handleSignUp} />
+
         <Button
           title="Already have an account? Login"
           onPress={() => this.props.navigation.navigate("LoginScreen")}
@@ -63,5 +78,12 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     marginTop: 8
+  },
+  keyboard: {
+    margin: 10,
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "stretch"
   }
 });
