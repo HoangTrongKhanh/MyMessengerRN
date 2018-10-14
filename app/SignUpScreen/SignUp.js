@@ -21,18 +21,28 @@ export default class SignUp extends Component {
       password_confirmation: "",
       user: null,
       errMessage: null,
-      showProgress: false,
       loading: false
     };
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        this.getRef()
+          .child("friends")
+          .push({
+            email: user.email,
+            uid: user.uid,
+            name: this.state.name
+          });
         this.props.navigation.navigate("MainScreen");
         this.setState({
           loading: false
         });
       }
     });
+  }
+
+  getRef() {
+    return firebase.database().ref();
   }
 
   static navigationOptions = {
