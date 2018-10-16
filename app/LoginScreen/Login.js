@@ -53,9 +53,9 @@ export default class Login extends Component {
   }
 
   componentWillUnmount() {
-    // if (this.unsubscriber) {
-    //   this.unsubscriber();
-    // }
+    if (this.unsubscriber) {
+      this.unsubscriber();
+    }
   }
 
   async handleLogin() {
