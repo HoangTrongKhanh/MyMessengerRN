@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import firebase from "react-native-firebase";
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+//import UserInfo from '../ComponentScreens/Authentication';
+import MessagesScreen from '../ComponentScreens/MessagesScreen/index';
+//import Setting from '../ComponentScreens/OrderHistory';
 
 export default class Main extends Component {
   static navigationOptions = {
@@ -24,10 +28,7 @@ export default class Main extends Component {
   render() {
     const { currentUser } = this.state;
     return (
-      <View style={styles.container}>
-        <Text>Hi {currentUser && currentUser.email}!</Text>
-        <Button title="LOG OUT" onPress={this.LogOut} />
-      </View>
+        <TabNavigator/>
     );
   }
 }
@@ -38,4 +39,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   }
+});
+
+const TabNavigator = createMaterialBottomTabNavigator({
+  //UserInfo: { screen: UserInfo },
+  MessagesScreen: { screen: MessagesScreen },
+  //Setting: { screen: Setting },
+},
+{
+  initialRouteName: 'MessagesScreen',
+  activeColor: '#f0edf6',
+  inactiveColor: '#3e2465',
+  barStyle: { backgroundColor: '#694fad' },
 });

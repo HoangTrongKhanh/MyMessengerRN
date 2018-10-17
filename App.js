@@ -34,10 +34,10 @@ class Home extends Component {
   }
 
   render() {
-    if (this.state.loading) return null; // Render loading/splash screen etc
-    if (!this.state.authenticated) {
-      return <Login navigation={this.props.navigation} />;
-    }
+    //if (this.state.loading) return null; // Render loading/splash screen etc
+    // if (!this.state.authenticated) {
+    //   return <Login navigation={this.props.navigation} />;
+    // }
     return <Main navigation={this.props.navigation} />;
   }
 }

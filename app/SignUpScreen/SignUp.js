@@ -92,7 +92,7 @@ export default class SignUp extends Component {
             style={styles.textInput}
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
-            eturnKeyType="next"
+            returnKeyType="next"
             ref={input => (this.emailInput = input)}
             onSubmitEditing={() => this.passwordCInput.focus()}
             keyboardType="email-address"
