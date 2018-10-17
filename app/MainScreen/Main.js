@@ -10,7 +10,7 @@ import firebase from "react-native-firebase";
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 //import UserInfo from '../ComponentScreens/Authentication';
 import MessagesScreen from '../ComponentScreens/MessagesScreen/index';
-//import Setting from '../ComponentScreens/OrderHistory';
+import Active from '../ComponentScreens/ActiveScreen/index';
 
 export default class Main extends Component {
   static navigationOptions = {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 const TabNavigator = createMaterialBottomTabNavigator({
   //UserInfo: { screen: UserInfo },
   MessagesScreen: { screen: MessagesScreen },
-  //Setting: { screen: Setting },
+  Active: { screen: Active },
 },
 {
   initialRouteName: 'MessagesScreen',

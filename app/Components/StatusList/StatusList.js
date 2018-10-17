@@ -8,7 +8,7 @@ import { TouchableRipple } from 'react-native-paper';
 import StatusItem from './StatusItem';
 import styles from './styles';
 
-//import { users } from '../../assets/fake_data';
+import { users } from '../../assets/fake_data';
 
 export default class componentName extends Component {
     renderItem = ({ item }) => {
@@ -36,7 +36,7 @@ export default class componentName extends Component {
     };
 
     render() {
-        //let recent = users.results.slice(1, 25);
+        let recent = users.results.slice(1, 25);
         return (
             <View>
                 <View style={styles.listTopView}>
@@ -50,7 +50,7 @@ export default class componentName extends Component {
                 </View>
                 <FlatList
                     horizontal
-                    //data={recent}
+                    data={recent}
                     renderItem={this.renderItem}
                     showsHorizontalScrollIndicator={false}
                     ListHeaderComponent={this.renderHeader}
