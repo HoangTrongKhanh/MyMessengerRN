@@ -3,10 +3,12 @@ package com.mymessengerrn;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -34,10 +36,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
+            new FBSDKPackage(),
               new RNFirebasePackage(),
               new RNGoogleSigninPackage(),
               new FBSDKPackage(mCallbackManager),
-              new RNFirebaseAuthPackage()
+              new RNFirebaseAuthPackage(),
+              new RNFirebaseDatabasePackage()
       );
     }
 

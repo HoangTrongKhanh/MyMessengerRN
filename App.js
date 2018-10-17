@@ -3,9 +3,10 @@ import { Platform, StyleSheet, View } from "react-native";
 import { StackNavigator } from "react-navigation";
 
 import Main from "./app/MainScreen/Main";
-import Loading from "./app/Loading";
 import SignUp from "./app/SignUpScreen/SignUp";
 import Login from "./app/LoginScreen/Login";
+import GloChat from "./app/GloChat";
+//import Friendlist from "./app/Friendlist";
 
 import firebase from "react-native-firebase";
 
@@ -44,8 +45,8 @@ class Home extends Component {
 
 export default (App = StackNavigator({
   HomeScreen: { screen: Home },
-  LoadingScreen: { screen: Loading },
   SignUpScreen: { screen: SignUp },
   LoginScreen: { screen: Login },
-  MainScreen: { screen: Main }
+  MainScreen: { screen: Main },
+  GloChatScreen: { screen: GloChat }
 }));

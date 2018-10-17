@@ -25,7 +25,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		183C1C1F2167093900DA1552 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183C1C1B2167093900DA1552 /* FBSDKCoreKit.framework */; };
 		183C1C202167093900DA1552 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183C1C1C2167093900DA1552 /* FBSDKLoginKit.framework */; };
-		183C1C212167093900DA1552 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183C1C1D2167093900DA1552 /* FBSDKShareKit.framework */; };
+		183C1C212167093900DA1552 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183C1C1D2167093900DA1552 /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		183C1C222167093900DA1552 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183C1C1E2167093900DA1552 /* Bolts.framework */; };
 		183C1C2B21670A4D00DA1552 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 183C1BF9216708A200DA1552 /* libRCTFBSDK.a */; };
 		186E64C82153DC7200E6681F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 186E64A12153DC7100E6681F /* GoogleService-Info.plist */; };
