@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { StackNavigator } from "react-navigation";
 
-import Main from "./app/MainScreen/Main";
-import SignUp from "./app/SignUpScreen/SignUp";
-import Login from "./app/LoginScreen/Login";
+import Main from "./app/ComponentScreens/MainScreen/Main";
+import SignUp from "./app/ComponentScreens/SignUpScreen/SignUp";
+import Login from "./app/ComponentScreens/LoginScreen/Login";
 import GloChat from "./app/GloChat";
+
 //import Friendlist from "./app/Friendlist";
 
 import firebase from "react-native-firebase";
@@ -39,7 +40,7 @@ class Home extends Component {
     // if (!this.state.authenticated) {
     //   return <Login navigation={this.props.navigation} />;
     // }
-    return <Main navigation={this.props.navigation} />;
+    return <Main  />;
   }
 }
 

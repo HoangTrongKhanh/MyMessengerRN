@@ -7,10 +7,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import firebase from "react-native-firebase";
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
-//import UserInfo from '../ComponentScreens/Authentication';
-import MessagesScreen from '../ComponentScreens/MessagesScreen/index';
-import Active from '../ComponentScreens/ActiveScreen/index';
+//import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import NavigationStack from "../../navigation";
 
 export default class Main extends Component {
   static navigationOptions = {
@@ -37,7 +35,7 @@ export default class Main extends Component {
   render() {
     const { currentUser } = this.state;
     return (
-      <TabNavigator/>
+      <NavigationStack/>
     //   <View style={styles.container}>
     //     <Text>Hi {currentUser && currentUser.email}!</Text>
     //     <Button title="LOG OUT" onPress={this.LogOut} />
@@ -101,14 +99,14 @@ const styles = StyleSheet.create({
   }
 });
 
-const TabNavigator = createMaterialBottomTabNavigator({
-  //UserInfo: { screen: UserInfo },
-  MessagesScreen: { screen: MessagesScreen },
-  Active: { screen: Active },
-},
-{
-  initialRouteName: 'MessagesScreen',
-  activeColor: '#f0edf6',
-  inactiveColor: '#3e2465',
-  barStyle: { backgroundColor: '#694fad' },
-});
+// const TabNavigator = createMaterialBottomTabNavigator({
+//   //UserInfo: { screen: UserInfo },
+//   MessagesScreen: { screen: MessagesScreen },
+//   Active: { screen: Active },
+// },
+// {
+//   initialRouteName: 'MessagesScreen',
+//   activeColor: '#f0edf6',
+//   inactiveColor: '#3e2465',
+//   barStyle: { backgroundColor: '#694fad' },
+// });
