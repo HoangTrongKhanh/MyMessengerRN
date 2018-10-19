@@ -6,7 +6,7 @@ import Main from "./app/MainScreen/Main";
 import SignUp from "./app/SignUpScreen/SignUp";
 import Login from "./app/LoginScreen/Login";
 import GloChat from "./app/GloChat";
-//import Friendlist from "./app/Friendlist";
+import Friendlist from "./app/Friendlist";
 
 import firebase from "react-native-firebase";
 
@@ -49,4 +49,5 @@ export default (App = StackNavigator({
   LoginScreen: { screen: Login },
   MainScreen: { screen: Main },
   GloChatScreen: { screen: GloChat }
+  FriendlistScreen: { screen: Friendlist }
 }));
