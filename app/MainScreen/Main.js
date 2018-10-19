@@ -6,7 +6,9 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
+
 import firebase from "react-native-firebase";
+import { StackNavigator } from "react-navigation";
 
 export default class Main extends Component {
   static navigationOptions = {
@@ -35,9 +37,11 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <Text>Hi {currentUser && currentUser.email}!</Text>
+
         <Button title="LOG OUT" onPress={this.LogOut} />
 
         <Text style={styles.title}>Enter Your Name:</Text>
+
         <TextInput
           style={styles.nameInput}
           placeholder={this.state.name}
@@ -60,14 +64,14 @@ export default class Main extends Component {
           </Text>
         </TouchableOpacity>
 
-        {/* <TouchableOpacity>
+        <TouchableOpacity>
           <Text
             style={styles.buttonStyle}
             onPress={() => this.props.navigation.navigate("Friendlist")}
           >
             Friend List
           </Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     );
   }

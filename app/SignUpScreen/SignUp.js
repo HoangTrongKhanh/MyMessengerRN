@@ -75,7 +75,7 @@ export default class SignUp extends Component {
         <Text style={{ fontSize: 20 }}>Sign Up</Text>
 
         {this.state.errMessage && (
-          <Text style={{ color: "red" }}>{this.state.errMessage}</Text>
+          <Text style={styles.error}>{this.state.errMessage}</Text>
         )}
 
         <KeyboardAvoidingView style={styles.keyboard}>
@@ -159,5 +159,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "stretch"
+  },
+  error: {
+    margin: 8,
+    marginBottom: 0,
+    color: "red",
+    textAlign: "center"
   }
 });
