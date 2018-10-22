@@ -138,7 +138,7 @@ export default class Login extends Component {
         <Text style={{ fontSize: 20 }}>Login</Text>
 
         {this.state.errorMessage && (
-          <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
+          <Text style={styles.error}>{this.state.errorMessage}</Text>
         )}
 
         <KeyboardAvoidingView style={styles.keyboard}>
@@ -224,5 +224,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "stretch"
+  },
+  error: {
+    margin: 8,
+    marginBottom: 0,
+    color: "red",
+    textAlign: "center"
   }
 });

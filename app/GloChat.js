@@ -44,6 +44,14 @@ class GloChat extends React.Component {
   }
 }
 
+GloChat.defaultProps = {
+  name: ""
+};
+
+GloChat.prototypes = {
+  name: PropTypes.string
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
