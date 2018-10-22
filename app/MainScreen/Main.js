@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   TextInput,
   TouchableOpacity
 } from "react-native";
@@ -36,7 +37,7 @@ export default class Main extends Component {
     const { currentUser } = this.state;
     return (
       <View style={styles.container}>
-        <Text>Hi {currentUser && currentUser.email}!</Text>
+        <Text style={styles.title}>Hi {currentUser && currentUser.email}!</Text>
 
         <Button title="LOG OUT" onPress={this.LogOut} />
 
@@ -67,7 +68,7 @@ export default class Main extends Component {
         <TouchableOpacity>
           <Text
             style={styles.buttonStyle}
-            onPress={() => this.props.navigation.navigate("Friendlist")}
+            onPress={() => this.props.navigation.navigate("FriendlistScreen")}
           >
             Friend List
           </Text>
@@ -87,11 +88,13 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderColor: "black",
-    margin: 20
+    margin: 20,
+    alignSelf: "stretch"
   },
   buttonStyle: {
     marginLeft: 20,
-    margin: 20
+    margin: 20,
+    fontSize: 20
   },
   container: {
     flex: 1,

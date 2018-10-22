@@ -48,6 +48,6 @@ export default (App = StackNavigator({
   SignUpScreen: { screen: SignUp },
   LoginScreen: { screen: Login },
   MainScreen: { screen: Main },
-  GloChatScreen: { screen: GloChat }
+  GloChatScreen: { screen: GloChat },
   FriendlistScreen: { screen: Friendlist }
 }));
