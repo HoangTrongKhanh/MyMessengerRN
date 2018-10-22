@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "183713302525-fr3n2m8p6ibl4b4dfobno1uq1u4diti4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mymessengerrn",
+            "certificate_hash": "5257c8e48267cb5fe4e2cac3062a08d49f9cdb5a"
+          }
+        },
+        {
+          "client_id": "183713302525-svg9h1vg085faiej9a6rgti4aaomsr0c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mymessengerrn",
+            "certificate_hash": "e6c281abd27f296d419451f2f5247586afc8dd1f"
+          }
+        },
+        {
           "client_id": "183713302525-6q2rf73gjj5ovisnvik5uege0f19dbfq.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183713302525-6q2rf73gjj5ovisnvik5uege0f19dbfq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "183713302525-ia1gm1taicmn8r5chnkal2ckp1rjvt2i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.MyMessengerRN"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2
