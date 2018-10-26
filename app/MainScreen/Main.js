@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import {
+  AppRegistry,
   StyleSheet,
   Text,
   View,
   Button,
+  StatusBar,
   TextInput,
   TouchableOpacity
 } from "react-native";
@@ -68,7 +70,7 @@ export default class Main extends Component {
         <TouchableOpacity>
           <Text
             style={styles.buttonStyle}
-            onPress={() => this.props.navigation.navigate("FriendlistScreen")}
+            onPress={() => this.props.navigation.navigate("Friendlist")}
           >
             Friend List
           </Text>

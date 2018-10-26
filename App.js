@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { StackNavigator } from "react-navigation";
 
-import Main from "./app/ComponentScreens/MainScreen/Main";
+import Main from "./app/MainScreen/Main";
 import SignUp from "./app/ComponentScreens/SignUpScreen/SignUp";
 import Login from "./app/ComponentScreens/LoginScreen/Login";
+import Chat from "./app/Chat";
 import GloChat from "./app/GloChat";
 import Friendlist from "./app/Friendlist";
+import ForgetPassword from "./app/ForgetPassword";
 
 import firebase from "react-native-firebase";
 
@@ -47,7 +49,9 @@ export default (App = StackNavigator({
   HomeScreen: { screen: Home },
   SignUpScreen: { screen: SignUp },
   LoginScreen: { screen: Login },
+  ForgetPassword: { screen: ForgetPassword },
   MainScreen: { screen: Main },
   GloChatScreen: { screen: GloChat },
-  FriendlistScreen: { screen: Friendlist }
+  Friendlist: { screen: Friendlist },
+  ChatScreen: { screen: Chat }
 }));

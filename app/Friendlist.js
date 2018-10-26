@@ -17,7 +17,15 @@ import { StackNavigator } from "react-navigation";
 import md5 from "./md5";
 import Chat from "./Chat";
 
+var name, uid, email;
+
 export default class Friendlist extends Component {
+  state = {
+    name: "",
+    uid: "",
+    email: ""
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -70,14 +78,21 @@ export default class Friendlist extends Component {
   renderRow = rowData => {
     return (
       <TouchableOpacity
-        onPress={props =>
-          this.props.navigation.navigate("Chat", { friend: rowData })
-        }
+        onPress={() => {
+          name = rowData.name;
+          email = rowData.email;
+          uid = rowData.uid;
+          this.props.navigation.navigate("Chat", {
+            name: name,
+            email: email,
+            uid: uid
+          });
+        }}
       >
         <View style={styles.profileContainer}>
           <Image
             source={{
-              uri: "https://www.gravatar.com/avatar/" + md5(rowData.email)
+              uri: "https://www.gravatar.com/avatar/" //+ md5(rowData.email)
             }}
             style={styles.profileImage}
           />

@@ -10,10 +10,13 @@ import {
   TextInput
 } from "react-native";
 
+import { StackNavigator } from "react-navigation";
 import { GiftedChat } from "react-native-gifted-chat";
 import firebase from "react-native-firebase";
 
 import md5 from "./md5";
+
+var name, uid, email;
 
 export default class Chat extends Component {
   constructor(props) {
@@ -23,7 +26,13 @@ export default class Chat extends Component {
     };
 
     this.user = firebase.auth().currentUser;
-    this.friend = this.props.friend;
+    console.log("User:" + this.user.uid);
+
+    const { params } = this.props.navigation.state;
+    uid = params.uid;
+    name = params.name;
+    email = params.email;
+    console.log("User:" + uid);
 
     this.chatRef = this.getRef().child("chat/" + this.generateChatId());
     this.chatRefData = this.chatRef.orderByChild("order");
@@ -31,9 +40,8 @@ export default class Chat extends Component {
   }
 
   generateChatId() {
-    if (this.user.uid > this.friend.uid)
-      return `${this.user.uid}-${this.friend.uid}`;
-    else return `${this.friend.uid}-${this.user.uid}`;
+    if (this.user.uid > uid) return `${this.user.uid}-${uid}`;
+    else return `${uid}-${this.user.uid}`;
   }
 
   getRef() {
@@ -49,10 +57,9 @@ export default class Chat extends Component {
           "https://www.gravatar.com/avatar/" +
           (child.val().uid == this.user.uid
             ? md5(this.user.email)
-            : md5(this.friend.email));
+            : md5(this.props.email));
 
-        var name =
-          child.val().uid == this.user.uid ? this.user.name : this.friend.name;
+        var name = child.val().uid == this.user.uid ? this.user.name : name;
 
         items.push({
           _id: child.val().createdAt,
