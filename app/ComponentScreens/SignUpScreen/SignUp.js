@@ -11,6 +11,8 @@ import {
 import firebase from "react-native-firebase";
 import Spinner from "react-native-loading-spinner-overlay";
 
+var Token;
+
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -21,24 +23,17 @@ export default class SignUp extends Component {
       password_confirmation: "",
       user: null,
       errMessage: null,
-      loading: false
+      loading: false,
+      uid: ""
     };
 
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.getRef()
-          .child("friends")
-          .push({
-            email: user.email,
-            uid: user.uid,
-            name: this.state.name
-          });
-        this.props.navigation.navigate("MainScreen");
-        this.setState({
-          loading: false
-        });
-      }
-    });
+    firebase
+      .messaging()
+      .getToken()
+      .then(token => {
+        console.warn("Device firebase Token: ", token);
+        Token = token;
+      });
   }
 
   getRef() {
@@ -66,7 +61,24 @@ export default class SignUp extends Component {
     await AsyncStorage.setItem("email", email);
     await AsyncStorage.setItem("name", name);
     await AsyncStorage.setItem("password", password);
-    //this.props.navigation.navigate("MainScreen");
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log(user.uid, user.email);
+        this.getRef()
+          .child("friends")
+          .push({
+            email: email,
+            uid: user.uid,
+            name: this.state.name,
+            token: Token
+          });
+        this.props.navigation.navigate("MainScreen");
+        this.setState({
+          loading: false
+        });
+      }
+    });
   }
 
   render() {

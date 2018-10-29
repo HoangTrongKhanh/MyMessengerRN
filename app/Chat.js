@@ -14,8 +14,6 @@ import { StackNavigator } from "react-navigation";
 import { GiftedChat } from "react-native-gifted-chat";
 import firebase from "react-native-firebase";
 
-import md5 from "./md5";
-
 var name, uid, email;
 
 export default class Chat extends Component {
@@ -39,6 +37,8 @@ export default class Chat extends Component {
     this.onSend = this.onSend.bind(this);
   }
 
+  //Generate ChatId works cause when you are the user sending chat you take user.uid and your friend takes uid
+  //when your friend is using the app to send message s/he takes user.uid and you take the uid cause you are the friend
   generateChatId() {
     if (this.user.uid > uid) return `${this.user.uid}-${uid}`;
     else return `${uid}-${this.user.uid}`;
@@ -53,21 +53,15 @@ export default class Chat extends Component {
       // get children as an array
       var items = [];
       snap.forEach(child => {
-        var avatar =
-          "https://www.gravatar.com/avatar/" +
-          (child.val().uid == this.user.uid
-            ? md5(this.user.email)
-            : md5(this.props.email));
-
-        var name = child.val().uid == this.user.uid ? this.user.name : name;
+        //var name = child.val().uid == this.user.uid ? this.user.name : name;
 
         items.push({
           _id: child.val().createdAt,
           text: child.val().text,
           createdAt: new Date(child.val().createdAt),
           user: {
-            _id: child.val().uid,
-            avatar: avatar
+            _id: child.val().uid
+            //avatar: avatar
           }
         });
       });
@@ -92,12 +86,14 @@ export default class Chat extends Component {
     //     messages: GiftedChat.append(this.state.messages, messages),
     // });
     messages.forEach(message => {
+      //var message = message[0];
       var now = new Date().getTime();
       this.chatRef.push({
         _id: now,
         text: message.text,
         createdAt: now,
         uid: this.user.uid,
+        fuid: uid,
         order: -1 * now
       });
     });

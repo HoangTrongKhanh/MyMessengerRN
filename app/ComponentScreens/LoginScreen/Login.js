@@ -26,15 +26,6 @@ export default class Login extends Component {
       loading: false,
       errorMessage: null
     };
-
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.props.navigation.navigate("MainScreen");
-        this.setState({
-          loading: false
-        });
-      }
-    });
   }
 
   static navigationOptions = {

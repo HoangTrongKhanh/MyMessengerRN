@@ -14,7 +14,6 @@ import firebase from "react-native-firebase";
 import Spinner from "react-native-loading-spinner-overlay";
 import { StackNavigator } from "react-navigation";
 
-import md5 from "./md5";
 import Chat from "./Chat";
 
 var name, uid, email;
@@ -92,7 +91,7 @@ export default class Friendlist extends Component {
         <View style={styles.profileContainer}>
           <Image
             source={{
-              uri: "https://www.gravatar.com/avatar/" //+ md5(rowData.email)
+              uri: "https://www.gravatar.com/avatar/"
             }}
             style={styles.profileImage}
           />
@@ -135,11 +134,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: 10
   },
-  inviteFriends: {
+  myFriends: {
+    flex: 1,
     color: "#3A5BB1",
-    tintColor: "#fff",
+    //tintColor: "#fff",
     //secondaryColor: '#E9E9E9',
     //grayColor: '#A5A5A5',
+    fontSize: 16,
     padding: 5
   },
   profileContainer: {

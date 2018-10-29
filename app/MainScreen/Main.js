@@ -32,7 +32,18 @@ export default class Main extends Component {
     firebase
       .auth()
       .signOut()
-      .then(() => this.props.navigation.navigate("LoginScreen"));
+      .then(
+        () => {
+          firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+              firebase.auth().signOut();
+            }
+          });
+        },
+        function(error) {}
+      );
+
+    this.props.navigation.navigate("LoginScreen");
   };
 
   render() {
