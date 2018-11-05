@@ -81,7 +81,7 @@ export default class Friendlist extends Component {
           name = rowData.name;
           email = rowData.email;
           uid = rowData.uid;
-          this.props.navigation.navigate("Chat", {
+          this.props.navigation.navigate("ChatScreen", {
             name: name,
             email: email,
             uid: uid

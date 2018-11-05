@@ -19,8 +19,7 @@ export default class Main extends Component {
   };
 
   state = {
-    currentUser: null,
-    name: ""
+    currentUser: null
   };
 
   componentDidMount() {
@@ -54,23 +53,23 @@ export default class Main extends Component {
 
         <Button title="LOG OUT" onPress={this.LogOut} />
 
-        <Text style={styles.title}>Enter Your Name:</Text>
+        {/* <Text style={styles.title}>Enter Your Name:</Text> */}
 
-        <TextInput
+        {/* <TextInput
           style={styles.nameInput}
           placeholder={this.state.name}
           onChangeText={text => {
             this.setState({ name: text });
           }}
           value={this.state.name}
-        />
+        /> */}
 
         <TouchableOpacity>
           <Text
             style={styles.buttonStyle}
             onPress={() =>
               this.props.navigation.navigate("GloChatScreen", {
-                name: this.state.name
+                name: this.state.currentUser.email
               })
             }
           >
