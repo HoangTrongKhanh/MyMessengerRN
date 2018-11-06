@@ -7,6 +7,7 @@ import MessageScreen from '../ComponentScreens/MessagesScreen'
 //import SearchScreen from 'src/screens/SearchScreen';
 
 import { BottomTabNavigation } from './BottomTabNavigation';
+import ChatScreen from '../ComponentScreens/ChatScreen';
 //import { HomeTabNavigation } from './HomeTabNavigation';
 //import SearchHeader from 'src/components/SearchHeader';
 
@@ -53,12 +54,17 @@ const MessengerApp = createStackNavigator({
     //     screen: SplashScreen,
     //     navigationOptions: { gesturesEnabled: false, header: null }
     // },
+    
     MainScreen: {
         screen: ModalStack,
         navigationOptions: {
             gesturesEnabled: false,
             header: null
         }
+    },
+    ChatScreen:{
+        screen: ChatScreen,
+        navigationOptions: { gesturesEnabled: false, header: null }
     },
     MessageScreen: {
         screen: MessageScreen,
