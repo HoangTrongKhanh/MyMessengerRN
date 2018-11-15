@@ -10,6 +10,9 @@ import {
   StatusBar
 } from "react-native";
 
+import Spinner from "react-native-loading-spinner-overlay";
+import firebase from "react-native-firebase";
+
 export default class ForgetPassword extends Component {
   constructor() {
     super();
@@ -67,11 +70,20 @@ export default class ForgetPassword extends Component {
         />
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={this.onForgetPress.bind(this)}
+          onPress={this.handleForgetPress.bind(this)}
         >
           <Text style={styles.buttonText}>Forget Password</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => this.props.navigation.navigate("LoginScreen")}
+        >
+          <Text style={styles.buttonText}>Back</Text>
+        </TouchableOpacity>
+
         {this.renderErrorMessage()}
+
         <Spinner visible={this.state.loading} />
       </View>
     );
@@ -88,14 +100,15 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    marginBottom: 10,
+    marginBottom: 15,
     backgroundColor: "rgba(255,255,255,0.2)",
     color: "#fff",
     paddingHorizontal: 10
   },
   buttonContainer: {
     backgroundColor: "rgba(255,255,255,0.2)",
-    paddingVertical: 15
+    paddingVertical: 15,
+    marginBottom: 10
   },
   buttonText: {
     textAlign: "center",

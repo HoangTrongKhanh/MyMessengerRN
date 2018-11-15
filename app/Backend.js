@@ -9,12 +9,11 @@ class Backend {
       if (user) {
         this.setUid(user.uid);
       } else {
-        firebase
-          .auth()
-          .signInAnonymously()
-          .catch(error => {
-            alert(error.message);
-          });
+        firebase.auth();
+        // .signInAnonymously()
+        // .catch(error => {
+        //   alert(error.message);
+        // });
       }
     });
   }

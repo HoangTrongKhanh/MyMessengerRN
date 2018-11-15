@@ -27,13 +27,13 @@ export default class SignUp extends Component {
       uid: ""
     };
 
-    firebase
-      .messaging()
-      .getToken()
-      .then(token => {
-        console.warn("Device firebase Token: ", token);
-        Token = token;
-      });
+    // firebase
+    //   .messaging()
+    //   .getToken()
+    //   .then(token => {
+    //     console.warn("Device firebase Token: ", token);
+    //     Token = token;
+    //   });
   }
 
   getRef() {

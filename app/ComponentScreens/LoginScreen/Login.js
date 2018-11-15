@@ -190,6 +190,13 @@ export default class Login extends Component {
           Don't have an account? Sign Up
         </Button>
 
+        <Button
+          onPress={() => this.props.navigation.navigate("ForgetPassword")}
+          style={{ marginTop: 10 }}
+        >
+          Forget Password!
+        </Button>
+
         <Spinner visible={this.state.loading} />
       </View>
     );
