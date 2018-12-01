@@ -85,6 +85,19 @@ export default class Main extends Component {
             Friend List
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text
+            style={styles.buttonStyle}
+            onPress={() =>
+              this.props.navigation.navigate("UserSettings", {
+                user: this.state.currentUser
+              })
+            }
+          >
+            User Settings
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
