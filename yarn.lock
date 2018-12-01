@@ -5118,6 +5118,11 @@ react-native-firebase@^5.0.0:
     opencollective-postinstall "^2.0.0"
     prop-types "^15.6.2"
 
+react-native-form-generator@^0.9.9:
+  version "0.9.9"
+  resolved "https://registry.yarnpkg.com/react-native-form-generator/-/react-native-form-generator-0.9.9.tgz#68aae26d1e8dc3e30073ccd7bb298fbdfdce1bca"
+  integrity sha1-aKribR6Nw+MAc8zXuymPvf3OG8o=
+
 react-native-gifted-chat@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.4.3.tgz#25b4da866c802e407c06e589495f421f7dcdf70a"
