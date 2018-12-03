@@ -58,6 +58,7 @@ export default class Login extends Component {
       .signInWithEmailAndPassword(email, password)
       .then(currentUser => {
         this.setState({ user: currentUser, loading: false });
+        this.props.navigation.navigate("MainScreen");
       })
       .catch(error =>
         this.setState({ errorMessage: error.message, loading: false })

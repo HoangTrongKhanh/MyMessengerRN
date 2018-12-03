@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Text, View, StyleSheet } from "react-native";
 import Backend from "./Backend";
 import { GiftedChat } from "react-native-gifted-chat";
 
-class GloChat extends React.Component {
+class GloChat extends Component {
   constructor(props) {
     super(props);
     this.state = { name: false };

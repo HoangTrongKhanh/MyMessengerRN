@@ -12,9 +12,6 @@ import {
 
 import firebase from "react-native-firebase";
 import Spinner from "react-native-loading-spinner-overlay";
-import { StackNavigator } from "react-navigation";
-
-import Chat from "./Chat";
 
 var name, uid, email;
 

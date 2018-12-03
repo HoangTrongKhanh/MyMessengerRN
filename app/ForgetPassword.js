@@ -57,7 +57,7 @@ export default class ForgetPassword extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" backgroundColor="#16a085" />
+        {/* <StatusBar barStyle="light-content" backgroundColor="#16a085" /> */}
         <TextInput
           placeholder="Email"
           placeholderTextColor="rgba(255,255,255,0.7)"
