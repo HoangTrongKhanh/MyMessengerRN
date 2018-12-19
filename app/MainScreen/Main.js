@@ -89,11 +89,7 @@ export default class Main extends Component {
         <TouchableOpacity>
           <Text
             style={styles.buttonStyle}
-            onPress={() =>
-              this.props.navigation.navigate("UserSettings", {
-                user: this.state.currentUser
-              })
-            }
+            onPress={() => this.props.navigation.navigate("UserSettings")}
           >
             User Settings
           </Text>
