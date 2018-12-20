@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  AppRegistry,
+  Alert,
   StyleSheet,
   Text,
   View,
@@ -37,7 +37,19 @@ export default class ForgetPassword extends Component {
       .sendPasswordResetEmail(email)
       .then(() => {
         this.setState({ loading: false });
-        this.props.navigation.navigate("Login");
+        setTimeout(() => {
+          Alert.alert(
+            "Success!",
+            "Email message was sent to you",
+            [
+              {
+                text: "OK",
+                style: "cancel"
+              }
+            ],
+            { cancelable: false }
+          );
+        }, 100);
       })
       .catch(error => {
         var errorCode = error.code;
@@ -50,14 +62,27 @@ export default class ForgetPassword extends Component {
   }
 
   renderErrorMessage = () => {
-    if (this.state.errorMessage)
-      return <Text style={styles.error}>{this.state.errorMessage}</Text>;
+    if (this.state.errorMessage) {
+      setTimeout(() => {
+        Alert.alert(
+          "Opp!",
+          `${this.state.errorMessage}`,
+          [
+            {
+              text: "OK",
+              style: "cancel",
+              onPress: () => this.setState({ errorMessage: null })
+            }
+          ],
+          { cancelable: false }
+        );
+      }, 100);
+    }
   };
 
   render() {
     return (
       <View style={styles.container}>
-        {/* <StatusBar barStyle="light-content" backgroundColor="#16a085" /> */}
         <TextInput
           placeholder="Email"
           placeholderTextColor="rgba(255,255,255,0.7)"
@@ -92,11 +117,11 @@ export default class ForgetPassword extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1.2,
+    flex: 1,
     justifyContent: "flex-start",
     backgroundColor: "#16a085",
     padding: 20,
-    paddingTop: 100
+    paddingTop: 40
   },
   input: {
     height: 40,
