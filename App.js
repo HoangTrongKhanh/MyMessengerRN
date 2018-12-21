@@ -10,6 +10,7 @@ import GloChat from "./app/GloChat";
 import Friendlist from "./app/Friendlist";
 import ForgetPassword from "./app/ForgetPassword";
 import UserSettings from "./app/UserSettings";
+import ChangePassword from "./app/ChangePassword";
 
 import firebase from "react-native-firebase";
 
@@ -58,5 +59,6 @@ export default (App = StackNavigator({
   GloChatScreen: { screen: GloChat },
   Friendlist: { screen: Friendlist },
   ChatScreen: { screen: Chat },
-  UserSettings: { screen: UserSettings }
+  UserSettings: { screen: UserSettings },
+  ChangePassword: { screen: ChangePassword }
 }));
