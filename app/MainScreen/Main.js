@@ -68,7 +68,7 @@ export default class Main extends Component {
           <Text
             style={styles.buttonStyle}
             onPress={() =>
-              this.props.navigation.navigate("GloChatScreen", {
+              this.props.navigation.push("GloChatScreen", {
                 name: this.state.currentUser.email
               })
             }
@@ -80,7 +80,7 @@ export default class Main extends Component {
         <TouchableOpacity>
           <Text
             style={styles.buttonStyle}
-            onPress={() => this.props.navigation.navigate("Friendlist")}
+            onPress={() => this.props.navigation.push("Friendlist")}
           >
             Friend List
           </Text>
@@ -89,7 +89,7 @@ export default class Main extends Component {
         <TouchableOpacity>
           <Text
             style={styles.buttonStyle}
-            onPress={() => this.props.navigation.navigate("UserSettings")}
+            onPress={() => this.props.navigation.push("UserSettings")}
           >
             User Settings
           </Text>
