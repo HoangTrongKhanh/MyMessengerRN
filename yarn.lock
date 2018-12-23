@@ -5174,6 +5174,11 @@ react-native-google-signin@^1.0.0-rc6:
   resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-1.0.0-rc6.tgz#13278e39551d127008e76a9c6caf532f04246f17"
   integrity sha512-F2flFlSKAhQEISc6StUiQ9UzeK62IR+p8PO+UmIUCQKvfygiXJSHoHhCQh9nB6subJyJKub9TVnk207aLx+k9A==
 
+react-native-image-picker@^0.27.2:
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.27.2.tgz#c44195feb1a4855eead36fadacc8b82828329b2a"
+  integrity sha512-1GuPIuQHjnLxmzUkmOHbI6cllETVRhJyrf8UoJXotD38+eX4JdcUSHGqV48XPc3e1u7b4HU7drFgyJcKFfQKRA==
+
 react-native-invertible-scroll-view@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-native-invertible-scroll-view/-/react-native-invertible-scroll-view-1.1.1.tgz#43039037e6537dc8c4f29baae1cd1a223bc25d81"
