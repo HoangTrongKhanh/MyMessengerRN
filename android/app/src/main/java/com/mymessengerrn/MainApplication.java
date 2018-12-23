@@ -8,10 +8,10 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import io.invertase.firebase.RNFirebasePackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -39,10 +39,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
-            new ImagePickerPackage(),
-            new VectorIconsPackage(),
-              //new FBSDKPackage(),
+              new ImagePickerPackage(),
+              new VectorIconsPackage(),
               new RNFirebasePackage(),
+              new RNFirebaseStoragePackage(),
               new RNGoogleSigninPackage(),
               new FBSDKPackage(mCallbackManager),
               new RNFirebaseAuthPackage(),
