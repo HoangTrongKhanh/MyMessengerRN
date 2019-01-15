@@ -12,17 +12,100 @@ import {
 import { ListItem, Button } from "react-native-elements";
 import firebase from "react-native-firebase";
 import Dialog from "react-native-dialog";
+import ImagePicker from "react-native-image-picker";
 
 export default class UserSettings extends Component {
   constructor(props) {
     super(props);
+
+    this.selectPhotoTapped = this.selectPhotoTapped.bind(this);
+
     this.state = {
       user: null,
       dialogName: false,
       dialogEmail: false,
       newName: "",
-      newEmail: ""
+      newEmail: "",
+      avatarSource: null
     };
+  }
+
+  selectPhotoTapped() {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true
+      }
+    };
+
+    ImagePicker.showImagePicker(options, response => {
+      console.log("Response = ", response);
+
+      if (response.didCancel) {
+        console.log("User cancelled photo picker");
+      } else if (response.error) {
+        console.log("ImagePicker Error: ", response.error);
+      } else if (response.customButton) {
+        console.log("User tapped custom button: ", response.customButton);
+      } else {
+        let source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          avatarSource: source
+        });
+      }
+    });
+  }
+
+  async handleUploadImage() {
+    const { newName, avatarSource } = this.state;
+
+    if (avatarSource) {
+      const storage = firebase.storage();
+      const sessionId = new Date().getTime();
+      const imageRef = storage
+        .ref("images")
+        .child(`${this.state.user.email} ${sessionId}`);
+
+      await imageRef
+        .putFile(avatarSource.uri, { contentType: "image/jpeg" })
+        .then(() => {
+          return imageRef.getDownloadURL();
+
+          // await firebase.auth().currentUser.updateProfile({
+          //   newName,
+          //   url
+          // });
+
+          // await firebase.auth().currentUser.reload();
+          // console.log(firebase.auth().currentUser);
+        })
+        .then(async url => {
+          await firebase
+            .auth()
+            .currentUser.updateProfile({
+              newName,
+              url
+            })
+            .then(() => {
+              firebase.auth().currentUser.reload();
+              console.log(firebase.auth().currentUser);
+            })
+            .catch(error => {
+              reject(error);
+              console.log("Error updating profile: ", error);
+            });
+        })
+        .catch(error => {
+          reject(error);
+          console.log("Error uploading image: ", error);
+        });
+    }
   }
 
   componentWillMount() {
@@ -152,12 +235,27 @@ export default class UserSettings extends Component {
             alignItems: "center"
           }}
         >
-          <Image
-            source={{
-              uri: "https://www.gravatar.com/avatar/"
-            }}
-            style={{ width: 80, height: 80, borderRadius: 25 }}
-          />
+          <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+            {this.state.avatarSource === null ? (
+              <Image
+                source={{
+                  uri: "https://www.gravatar.com/avatar/"
+                }}
+                style={{ width: 80, height: 80, borderRadius: 25 }}
+              />
+            ) : (
+              <Image
+                style={{ width: 80, height: 80, borderRadius: 25 }}
+                source={this.state.avatarSource}
+              />
+            )}
+            {/* <Image
+              source={{
+                uri: "https://www.gravatar.com/avatar/"
+              }}
+              style={{ width: 80, height: 80, borderRadius: 25 }}
+            /> */}
+          </TouchableOpacity>
         </View>
 
         <View style={{ marginVertical: 10 }}>
@@ -202,6 +300,19 @@ export default class UserSettings extends Component {
             onPress={this.handleChangeEmail.bind(this)}
           />
         </Dialog.Container>
+
+        <Button
+          title="Upload Image"
+          onPress={this.handleUploadImage.bind(this)}
+          buttonStyle={{
+            backgroundColor: "rgba(92, 99,216, 1)",
+            height: 45,
+            borderColor: "transparent",
+            borderWidth: 0,
+            borderRadius: 10
+          }}
+          containerStyle={{ paddingHorizontal: 10 }}
+        />
       </ScrollView>
     );
   }
